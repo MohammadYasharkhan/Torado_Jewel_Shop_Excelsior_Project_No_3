@@ -1,0 +1,124 @@
+.my_account_form .form_group input,
+.my_account_form .form_group textarea,
+.my_account_form .form_group select {
+    border: 1px solid var(--js_ash-color);
+    padding: 12px 15px;
+}
+
+
+
+.my_account_form .form_group input:focus,
+.my_account_form .form_group textarea:focus,
+.my_account_form .form_group select:focus
+{
+    border: 1px solid #000000;
+}
+
+.my_account_form .form_group input,
+.my_account_form .form_group select {
+    height: 50px;
+}
+
+.my_account_form .form_group textarea
+{
+    height: 200px;
+    resize: none;
+}
+
+.my_account_form .form_group select
+{
+    background-position: calc(100% - 15px) 50%;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.my_account_form .form_group select:focus
+{
+    outline: 0;
+    box-shadow: none;
+}
+
+.my_account_form .form_group .star-rating
+{
+    text-align: start;
+    overflow: hidden;
+    max-width: 91px;
+}
+
+.my_account_form .form_group .star-rating input
+{
+    display: none;
+}
+
+.my_account_form .form_group .star-rating label
+{
+    float: right;
+    cursor: pointer;
+    position: relative;
+    margin-right: 3px;
+}
+
+.my_account_form .form_group .star-rating label::before
+{
+    transition: var(--transition);
+    content: "\ec27";
+    font-family: boxicons !important;
+    color: var(--js_main-color);
+    font-size: 15px;
+    line-height: 1;
+}
+
+
+.my_account_form .form_group .star-rating input:checked ~ label:before, .my_account_form .form_group .star-rating:not(:checked) > label:hover:before, .my_account_form .form_group .star-rating:not(:checked) > label:hover ~ label:before 
+{
+    content: "\eeb8";
+}
+
+.checkbox {
+    display: block;
+}
+
+.checkbox.form-check {
+    padding-left: 0;
+}
+
+.checkbox label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 29px;
+}
+
+.checkbox.style-two label {
+    padding-left: 23px;
+}
+
+
+.checkbox.style-two label::before {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #DFDFDF;
+    left: 0;
+    top: 4px;
+}
+
+.checkbox label::before {
+    content: "";
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    vertical-align: middle;
+    cursor: pointer;
+    left: 0;
+    top: 3.5px;
+}
+
+
+
+.checkbox label a {
+    font-weight: 500;
+}

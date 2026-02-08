@@ -1,0 +1,61 @@
+.subscribe_popup
+{
+    padding-bottom: 82px;
+}
+
+
+.subscribe_popup .subscribe_popup_bg
+{
+    background-image: url("@/assets/images/newsletter/newsletter-bg.jpg");
+    width: 100%;
+    height: 382px;
+}
+
+.subscribe_popup  .subscribe_popup_sub_box
+{
+    background-color: var(--js_main-color);
+    padding: 30px;
+    margin: -108px 82px 0;
+}
+
+.subscribe_popup p 
+{
+    line-height: 24px;
+}
+
+
+.subscribe_popup .subscribe_popup_sub_box .subscribe_popup_form input
+{
+    height: 50px;
+    border: 1px solid #DFDFDF;
+    font-size: 14px;
+    padding: 10px 15px;
+}
+
+.subscribe_popup .subscribe_popup_sub_box .subscribe_popup_form input::placeholder
+{
+    color: #fff;
+    text-align: start;
+}
+
+.subscribe_popup .subscribe_popup_sub_box .subscribe_popup_form button
+{
+    margin-top: 19px;
+    width: 100%;
+    display: block;
+    padding: 17px 20px;
+}
+
+
+@media (max-width:767px) {
+    .subscribe_popup  .subscribe_popup_sub_box
+    {    
+        padding: 20px;
+        margin: -108px 22px 0;
+    }
+
+    .subscribe_popup .subscribe_popup_bg
+    {
+        height: 250px;
+    }
+}

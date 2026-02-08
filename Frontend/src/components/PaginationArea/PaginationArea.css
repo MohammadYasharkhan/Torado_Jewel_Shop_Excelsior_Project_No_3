@@ -1,0 +1,28 @@
+.js_pagination_area .page_number
+{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    background-color: transparent;
+    color: var(--js_title-color);
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #D9D9D9;
+    border-radius: 50%;
+    font-weight: 600;
+    transition: var(--transition);
+    margin-right: 10px;
+    position: relative;
+}
+
+.js_pagination_area .page_number:last-child
+{
+    margin-right: 0px;
+}
+
+.js_pagination_area .page_number.current, .js_pagination_area .page_number:hover{
+    background-color: var(--js_main-color);
+    color: var(--white-color);
+    border-color: transparent;
+}

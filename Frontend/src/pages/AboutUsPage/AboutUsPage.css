@@ -1,0 +1,16 @@
+.js-team-card .js-team-img img {
+    transition: var(--transition);
+}
+
+.js-team-card:hover .js-team-img img {
+    transform: scale(1.04);
+}
+
+.js-team-card .js-team-img {
+    overflow: hidden;
+}
+
+.js-brand-slider
+{
+    border-bottom: 1px solid #F0F0F0;
+}

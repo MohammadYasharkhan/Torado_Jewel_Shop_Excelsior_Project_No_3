@@ -1,0 +1,127 @@
+.product_tablist
+{
+    margin-bottom: 45px;
+}
+
+.product_tablist .nav-item
+{
+    margin-right: 11px;
+    border-radius: 0;
+}
+
+
+.product_tablist .nav-item .nav-link
+{
+    color: var(--js_title-color);
+    border: 1px solid #D9D9D9;
+    padding: 9px 21px;
+    border-radius: 0;
+    transition: var(--transition);
+}
+.product_tablist .nav-item .nav-link.active
+{
+    background-color: var(--js_main-color);
+    color: var(--white-color);
+    border-color: var(--js_main-color);
+}
+
+
+.product_tab_content .js-product-reviews .js-product-review-card  
+{
+    margin-bottom: 55px;
+}
+
+
+.product_tab_content .js-product-reviews .js-product-review-card:last-child
+{
+    margin-bottom: 0;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-avatar 
+{
+    width: 75px;
+    height: 75px;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-review
+{
+    width: calc(100% - 120px);
+    margin-left: auto; 
+} 
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-review .rating li 
+{
+    margin-right: 2px;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-review .rating li:last-child
+{
+    margin-right: 0;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-review .rating li i 
+{
+    color: var(--js_main-color);
+    font-size: 15px; 
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-review h6 
+{
+    font-family: var(--js_primary-font);
+    margin: 4px 0 10px;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-review span
+{
+    display: block;
+    line-height: 1;
+    margin-bottom: 3px;
+}
+
+.js-product-desc 
+{
+    margin-bottom: 18px;
+}
+
+
+.product_tab_content .js-product-desc  .product-additional-info li 
+{
+    margin-bottom: 16px;
+} 
+
+
+.product_tab_content .js-product-desc  .product-additional-info li:last-child
+{
+    margin-bottom: 0;
+}
+
+@media (max-width:991px) {
+    .product_tab_content .js-product-reviews .js-product-review-card .client-review
+{
+    width: calc(100% - 85px);
+    margin-left: auto; 
+} 
+
+
+
+.product_tab_content .js-product-reviews
+{
+    margin-bottom: 25px;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card .client-avatar 
+{
+    height: 65px;
+    width: 65px;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card  
+{
+    margin-bottom: 30px;
+}
+
+.product_tab_content .js-product-reviews .js-product-review-card:last-child
+{
+    margin-bottom: 0;
+}
+}

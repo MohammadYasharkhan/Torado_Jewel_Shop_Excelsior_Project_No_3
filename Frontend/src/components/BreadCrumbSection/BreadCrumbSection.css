@@ -1,0 +1,29 @@
+.bread_crumb_section {
+    background-color: #FFFCF9;
+    padding-top: 44px;
+    padding-bottom: 44px;
+}
+
+
+
+.bread_crumb_section .container .bread_crumb_ul li {
+    display: inline-block;
+    margin-right: 7px;
+    padding-right: 17px;
+    color: var(--js_main-color);
+    position: relative;
+}
+
+
+.bread_crumb_section .container .bread_crumb_ul li:last-child::after {
+    content: '';
+}
+
+.bread_crumb_section .container .bread_crumb_ul li::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "/";
+    font-size: 16px;
+    color: var(--js_para-color);
+}

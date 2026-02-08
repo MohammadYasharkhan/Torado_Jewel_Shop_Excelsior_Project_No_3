@@ -1,0 +1,239 @@
+.sidebar_product
+{
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar_product .sidebar_search-form input
+{
+    background-color: #f7f7f7;
+    height: 60px;
+    padding: 14px 15px;
+}
+
+.sidebar_product .sidebar_search-form button
+{
+    right: 0;
+    padding: 20px 15px 15px;
+}
+
+
+
+.sidebar_product .sidebar_search-form button i 
+{
+    font-size: 24px;
+    line-height: 1;
+    transition: var(--transition);
+}
+
+.collapse_widget_title
+{
+    margin-bottom: 25px;
+    cursor: pointer;
+    padding-right: 30px;
+}
+
+
+.collapse_widget_title span
+{
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    background-color: #f7f7f7;
+    color: var(--js_title-color);
+    transition: var(--transition);
+}
+
+.collapse_widget .checked_list.style-one li
+{
+    margin-bottom: 10px;
+}
+
+
+.collapse_widget .checked_list.style-one li .checked_list_item
+{
+    padding-left: 22px;
+    color: var(--js_para-color);
+}
+
+
+
+.collapse_widget .checked_list.style-one li .checked_list_item.active, .collapse_widget .checked_list.style-one li .checked_list_item:hover
+{   
+    color: var(--js_main-color);
+}   
+
+.collapse_widget .checked_list.style-one li .checked_list_item::before
+{
+    position: absolute;
+    top: 4px;
+    left: 0;
+    content: "";
+    width: 12px;
+    height: 12px;
+    border: 1px solid rgba(105, 104, 102, 0.5);
+}
+
+
+
+.collapse_widget .checked_list.style-one li .checked_list_item.active::after,.collapse_widget .checked_list.style-one li .checked_list_item:hover::after
+{
+    visibility: visible;
+    opacity: 1;
+    background-color: var(--js_main-color);
+}
+
+
+
+.collapse_widget .checked_list.style-one li .checked_list_item::after
+{
+    position: absolute;
+    top: 6px;
+    left: 2.5px;
+    content: "";
+    width: 8px;
+    height: 8px;
+    visibility: hidden;
+    background-color: var(--js_main-color);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+
+.collapse_widget .checked_list.style-two li
+{
+    margin-bottom: 14px;
+}
+
+.collapse_widget .checked_list.style-two li .checked_list_item
+{
+    display: block;
+}
+
+.collapse_widget .checked_list.style-two li .checked_list_item label
+{
+    padding-left: 23px;
+    color: var(--js_para-color);
+}
+
+.collapse_widget .checked_list.style-two li .checked_list_item input
+{
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+
+.collapse_widget .checked_list.style-two li .checked_list_item label::before
+{
+    position: absolute;
+    top: 6px;
+    left: 0;
+    content: "";
+    width: 12px;
+    height: 12px;
+    border: 1px solid rgba(105, 104, 102, 0.5);
+}
+
+
+.collapse_widget .checked_list.style-two li .checked_list_item input:checked + label::before
+{
+    border-color: var(--js_para-color);
+}
+
+
+.collapse_widget .checked_list.style-two li .checked_list_item input:checked + label::after
+{
+    position: absolute;
+    display: block;
+    top: 8px;
+    left: 2.5px;
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: var(--js_main-color);
+    transition: var(--transition);
+    border: none;
+}
+
+
+.pp_product_card_wrap .pp_product_card
+{
+    margin-bottom: 20px;
+}
+
+.pp_product_card_wrap .pp_product_card .product_img
+{
+    width: 112px;
+}
+
+.pp_product_card_wrap .pp_product_card .product_info
+{
+    width: calc(100% - 127px);
+    margin-left: auto;
+}
+
+
+.pp_product_card_wrap .pp_product_card .product_info h6 
+{
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.pp_product_card_wrap .pp_product_card .product_info h6 a 
+{
+    color: var(--js_title-color);
+}
+
+.pp_product_card_wrap .pp_product_card .product_info h6 a:hover
+{
+    color: var(--js_main-color);
+}
+
+
+
+.js-pp-post-card-wrap .js-pp-post-card {
+    margin-bottom: 20px;
+}
+
+.js-pp-post-card-wrap .js-pp-post-card:last-child
+{
+    margin-bottom: 0;
+}
+
+.js-pp-post-card-wrap .js-pp-post-card .js-post-img {
+    width: 112px;
+}
+
+.js-pp-post-card-wrap .js-pp-post-card .js-post-info {
+    width: calc(100% - 127px);
+    margin-left: auto;
+}
+
+.js-pp-post-card-wrap .js-pp-post-card .js-post-info h6 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.js-tag-list li {
+    display: inline-block;
+    margin: 11px 7px 5px 0px;
+}
+
+.js-tag-list li:last-child
+{
+    margin-right: 0;
+}
+
+.js-tag-list li a {
+    color: var(--js_para-color);
+    padding: 4.5px 9px 5.5px;
+    font-size: 14px;
+    border: 1px solid #D9D9D9;
+    background-color: #F7F7F7;
+}

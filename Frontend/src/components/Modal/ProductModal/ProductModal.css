@@ -1,0 +1,26 @@
+#modal-product .modal-content .product_card.style-three .product_image
+{
+    width: 113px;
+}
+
+
+#modal-product .modal-content .product_card.style-three .product_content
+{
+    width: calc(100% - 135px);
+    margin-left: auto;
+}
+
+.exit_product_popup .product_card.style-three
+{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border:none;
+}
+
+
+@media (max-width:767px) {
+    #modal-product .modal-content .product_card.style-three .product_content
+    {
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,13 @@
+const HttpCodeConst = {
+    SUCCESS: 200,
+    SUCCESS_ADD: 201,
+    FAILED: 500,
+    VALIDATION: 422,
+    DUPLICATION: 409,
+    NOTFOUND: 404,
+    FORBIDDEN : 403,
+    NO_CHANGE: 204,
+    BAD_REQ: 400,
+    AUTHENTICATION_FAILED : 401,
+};
+export {HttpCodeConst};

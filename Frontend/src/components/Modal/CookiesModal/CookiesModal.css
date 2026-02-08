@@ -1,0 +1,12 @@
+
+.cookies_popup
+{
+    background-color: var(--js_main-color);
+    padding: 30px;
+}
+
+
+.cookies_popup p
+{
+    line-height: 24px;
+}

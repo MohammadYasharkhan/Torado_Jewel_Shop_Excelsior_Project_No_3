@@ -1,0 +1,23 @@
+
+
+@media (min-width:768px) and (max-width:991px) {
+    .authentication_wrap .pb-75
+    {
+        padding-bottom: 55px;
+    }
+    .authentication_wrap .pt-100
+    {
+        padding-top: 80px;
+    }
+}
+
+@media (max-width:767px) {
+    .authentication_wrap .pb-75
+    {
+        padding-bottom: 25px;
+    }
+    .authentication_wrap .pt-100
+    {
+        padding-top: 50px;
+    }
+}
