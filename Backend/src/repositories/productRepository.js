@@ -21,12 +21,13 @@ class ProductRepository {
 
             for (const product of products) {
                 await connection.query(
-                    'CALL add_single_products(?,?,?,?,?)',
+                    'CALL add_single_products(?,?,?,?,?,?)',
                     [
                         product.name,
                         product.image,
                         product.price,
                         product.sale_price,
+                        product.is_sale_available,
                         product.stock
                     ]
                 );

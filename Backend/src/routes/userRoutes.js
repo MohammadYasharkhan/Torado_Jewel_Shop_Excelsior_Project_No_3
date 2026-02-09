@@ -1,7 +1,7 @@
 import express from "express";
 import { userValidationMid } from "../middleware/validationMiddleware.js";
 import { DataValidator } from "../helper/userValidator.js";
-import { commentInsertController, contactUsInsertController, loginController, signupController,askQuestionInsertController,getAllProductsController} from "../controllers/userController.js";
+import { commentInsertController, contactUsInsertController, loginController, signupController,askQuestionInsertController,getAllProductsController,insertMultipleProductsController} from "../controllers/userController.js";
 import upload from "../middleware/uploadImageMid.js";
 const userRoutes=express.Router();
 
@@ -15,6 +15,7 @@ userRoutes.route("/askQuestionForm").post(userValidationMid(DataValidator.valida
 
 userRoutes.route("/getAllProducts").get(getAllProductsController);
 
-userRoutes.route("/insertMultipleProducts").post(upload.single('image'),)
+userRoutes.route("/insertMultipleProducts").post(upload.array('images', 50), 
+                        userValidationMid(DataValidator.validateProductData.bind(DataValidator)) , insertMultipleProductsController);
 
 export {userRoutes};

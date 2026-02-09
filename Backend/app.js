@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import { userRoutes } from "./src/routes/userRoutes.js";
 import { newsletterRoutes } from "./src/routes/newLetterRoutes.js";
 import { db_object } from "./src/configs/dbConfig.js";
@@ -7,6 +9,8 @@ import migrate from "./src/configs/dbMigration.js";
 const port = 4000;
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(
     cors({

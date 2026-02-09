@@ -52,5 +52,9 @@ export const submitAskQuestionForm = (data) =>
     });
 
 
+export const getAllProducts = () =>
+    apiClient("/user/getAllProducts", {
+        method: "GET",
+    });
 
 export default apiClient;

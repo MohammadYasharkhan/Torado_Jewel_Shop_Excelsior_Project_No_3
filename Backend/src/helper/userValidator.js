@@ -63,7 +63,7 @@ class DataValidator {
     static validateToken(token) {
 
 
-        let newToken=token.token;
+        let newToken = token.token;
         if (!newToken || typeof newToken !== "string") {
             throw new ValidationError("Verification token is required");
         }
@@ -167,6 +167,111 @@ class DataValidator {
         return true;
     }
 
+    static validateProductData(body) {
+
+        console.log("RAW req.body.products:", body.products);
+        console.log("TYPE:", typeof body.products);
+
+        if (!body || !body.products) {
+            throw new ValidationError("products field is required");
+        }
+
+        let products;
+        try {
+            products = JSON.parse(body.products);
+        } catch {
+            throw new ValidationError("Invalid products JSON");
+        }
+
+        if (!Array.isArray(products) || products.length === 0) {
+            throw new ValidationError("Products must be a non-empty array");
+        }
+
+        products.forEach((p, i) => {
+
+            /* ---------- NAME ---------- */
+            if (p.name === undefined || p.name === null) {
+                throw new ValidationError(`Name is required at index ${i}`);
+            }
+
+            if (typeof p.name !== "string" || !p.name.trim()) {
+                throw new ValidationError(
+                    `Name must be a non-empty string at index ${i}`
+                );
+            }
+
+
+            /* ---------- PRICE ---------- */
+            if (p.price === undefined || p.price === null) {
+                throw new ValidationError(`Price is required at index ${i}`);
+            }
+
+            if (isNaN(p.price)) {
+                throw new ValidationError(`Price must be a number at index ${i}`);
+            }
+
+            if (Number(p.price) <= 0) {
+                throw new ValidationError(
+                    `Price must be greater than 0 at index ${i}`
+                );
+            }
+
+            
+            /* ---------- SALE PRICE (OPTIONAL) ---------- */
+            if (p.sale_price !== undefined && p.sale_price !== null && p.sale_price !== "") {
+                
+                if (isNaN(p.sale_price)) {
+                    throw new ValidationError(
+                        `Sale price must be a number at index ${i}`
+                    );
+                }
+                
+                if (Number(p.sale_price) <= 0) {
+                    throw new ValidationError(
+                        `Sale price must be greater than 0 at index ${i}`
+                    );
+                }
+                
+                if (Number(p.sale_price) >= Number(p.price)) {
+                    throw new ValidationError(
+                        `Sale price must be less than price at index ${i}`
+                    );
+                }
+            }
+            
+
+            /* ---------- SALE AVAILABLE ---------- */
+            if (p.is_sale_available !== undefined && p.is_sale_available !== null) {
+
+                if (typeof p.is_sale_available !== "boolean") {
+                    throw new ValidationError(
+                        `is_sale_available must be boolean at index ${i}`
+                    );
+                }
+            }
+            
+            /* ---------- STOCK ---------- */
+            if (p.stock === undefined || p.stock === null) {
+                throw new ValidationError(`Stock is required at index ${i}`);
+            }
+
+            if (isNaN(p.stock)) {
+                throw new ValidationError(`Stock must be a number at index ${i}`);
+            }
+
+            if (!Number.isInteger(Number(p.stock))) {
+                throw new ValidationError(
+                    `Stock must be an integer at index ${i}`
+                );
+            }
+
+            if (Number(p.stock) < 0) {
+                throw new ValidationError(
+                    `Stock must be greater than or equal to 0 at index ${i}`
+                );
+            }
+        });
+    }
 }
 
 export { DataValidator };

@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS products (
     image VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     sale_price DECIMAL(10,2) NULL,
+    is_sale_available BOOLEAN NOT NULL DEFAULT FALSE,
     stock INT NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -16,13 +17,14 @@ BEGIN
     SELECT * FROM products;
 END;
 
-
+DROP PROCEDURE IF EXISTS add_single_products;
 CREATE PROCEDURE add_single_products(
     IN p_name VARCHAR(255),
     IN p_image VARCHAR(255),
     IN p_price DECIMAL(10,2),
     IN p_sale_price DECIMAL(10,2),
-    IN stock INT
+    IN p_is_sale_available BOOLEAN,
+    IN p_stock INT
 )
 BEGIN   
     INSERT INTO products (
@@ -30,6 +32,7 @@ BEGIN
         image,
         price,
         sale_price,
+        is_sale_available,
         stock
     )
     VALUES (
@@ -37,6 +40,7 @@ BEGIN
         p_image,
         p_price,
         p_sale_price,
+        p_is_sale_available,
         p_stock
     );
 END;

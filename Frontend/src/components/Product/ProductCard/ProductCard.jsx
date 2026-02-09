@@ -1,5 +1,5 @@
 import './ProductCard.css';
-import { Icons,ProductImages } from '../../../assets/assetsExporter';
+import { Icons, ProductImages } from '../../../assets/assetsExporter';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSwiperControls } from '../../../hooks/useSwiperControl';
 import { Thumbs } from "swiper/modules";
@@ -7,6 +7,7 @@ import FsLightbox from "fslightbox-react";
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 
+const IMAGE_BASE_URL = "http://localhost:4000";
 
 const singleProductImages = [
     ProductImages.single.single1,
@@ -35,8 +36,12 @@ function ProductCard({ data, variant = "one", subVariant = "one", mb = "mb-25", 
 function CardStyleOne({ data, mb, fontSize }) {
     return <div className={`product_card style-one ${mb}`}>
         <div className='product_img position-relative z-1 overflow-hidden'>
-            <img src={data.itemImage} alt="product image" className='d-block mx-auto' />
-            {data.isSaleAvailable && <span className='product_promo fs-14 text-white position-absolute'>Sale!</span>}
+            <img src={`${IMAGE_BASE_URL}${data.image}`} alt="product image" className='d-block mx-auto' />
+            {!!data.is_sale_available && (
+                <span className='product_promo fs-14 text-white position-absolute'>
+                    Sale!
+                </span>
+            )}
             <ul className='product_options list-unstyled mb-0 position-absolute z-1 text-center'>
                 <li>
                     <a href='/' className='d-flex flex-column align-items-center justify-content-center rounded-circle'><i className="bx bx-heart"></i></a>
@@ -67,9 +72,9 @@ function CardStyleOne({ data, mb, fontSize }) {
             </li>
         </ul>
         <h3 className={`fw-normal ${fontSize}`}>
-            <a href="/" className='js_text-title'>{data.itemName}</a>
+            <a href="/" className='js_text-title'>{data.name}</a>
         </h3>
-        <span className='product_price js_text_primary'>${data.itemPrice}</span>
+        <span className='product_price js_text_primary'>${data.price}</span>
     </div>;
 }
 
@@ -107,9 +112,13 @@ function CardStyleThree({ data }) {
     return <div className='product_card style-three d-flex flex-warp align-items-center'>
         <div className='product_img position-relative z-1 overflow-hidden'>
             <a href="/">
-                <img src={data.itemImage} alt="product image" className='d-block mx-auto' />
+                <img src={`${IMAGE_BASE_URL}${data.image}`} alt="product image" className='d-block mx-auto' />
             </a>
-            {data.isSaleAvailable && <span className='product_promo fs-14 text-white position-absolute'>Sale!</span>}
+            {!!data.is_sale_available && (
+                <span className='product_promo fs-14 text-white position-absolute'>
+                    Sale!
+                </span>
+            )}
         </div>
 
         <div className="product_info">
@@ -131,9 +140,9 @@ function CardStyleThree({ data }) {
                 </li>
             </ul>
             <h3 className='fw-normal fs-20'>
-                <a href="/" className='js_text-title'>{data.itemName}</a>
+                <a href="/" className='js_text-title'>{data.name}</a>
             </h3>
-            <span className='product_price js_text_primary mb-2 d-block'>${data.itemPrice}</span>
+            <span className='product_price js_text_primary mb-2 d-block'>${data.price}</span>
             <p class="mb-30">Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
             <ul className='product_options list-unstyled mb-0 d-flex align-items-center justify-content-between'>
                 <li>
