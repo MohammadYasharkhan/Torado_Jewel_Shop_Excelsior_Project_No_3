@@ -6,6 +6,10 @@ import { Thumbs } from "swiper/modules";
 import FsLightbox from "fslightbox-react";
 import { Link } from "react-router-dom";
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
+import { addToWishlistAPI } from '../../../apiCall/wishlist.api';
+import { addToCartAPI } from '../../../apiCall/cart.api';
 
 const IMAGE_BASE_URL = "http://localhost:4000";
 
@@ -34,20 +38,146 @@ function ProductCard({ data, variant = "one", subVariant = "one", mb = "mb-25", 
 
 
 function CardStyleOne({ data, mb, fontSize }) {
+
+    const { isLoggedIn } = useAuth();
+    const navigate = useNavigate();
+    const [showPopup, setShowPopup] = useState(false);
+    const [respData,setRespData] = useState(null);
+    const [status, setStatus] = useState("idle");
+    const [error, setError] = useState("");
+
+    const handleWishlistClick = async (e) => {
+        e.preventDefault();
+
+        console.log(isLoggedIn);
+        if (!isLoggedIn) {
+            setShowPopup(true);  // ← Show popup if not logged in
+            console.log(showPopup);
+            return;
+        }
+
+        // TODO: Add to wishlist API call
+        console.log('Adding to wishlist:', data.id);
+
+        try
+        {
+            setStatus("loading");
+            const res = await addToWishlistAPI({ productId: data.id });
+            setRespData(res);
+            console.log(res);
+            setStatus("Success");
+            navigate("/wishlist");
+        }
+        catch(err)
+        {
+            console.error(err);
+            setStatus("error");
+            setError(err.message || "Something went wrong");
+        }
+    };
+
+
+    const handleCartClick = async (e) => {
+        e.preventDefault();
+
+
+        console.log(isLoggedIn);
+        if (!isLoggedIn) {
+            setShowPopup(true);  // ← Show popup if not logged in
+            console.log(showPopup);
+            return;
+        }
+
+        // TODO: Add to wishlist API call
+        console.log('Adding to Cart:', data.id);
+
+        try
+        {
+            setStatus("loading");
+            const res = await addToCartAPI({ productId: data.id });
+            setRespData(res);
+            console.log(res);
+            setStatus("Success");
+            navigate("/cartPage");
+        }
+        catch(err)
+        {
+            console.error(err);
+            setStatus("error");
+            setError(err.message || "Something went wrong");
+        }
+    };
+
+
+
+    const getImageUrl = (imageData) => {
+        if (!imageData) return '';
+
+        // Check if it's a string (backend data) or imported module (static data)
+        if (imageData.startsWith('/uploads')) {
+            return `${IMAGE_BASE_URL}${imageData}`;
+        } else {
+            // Static import - use directly
+            return imageData;
+        }
+    };
+
+    const normalizedData = {
+        ...data,
+        imageUrl: getImageUrl(data.image),
+    };
+
     return <div className={`product_card style-one ${mb}`}>
+
+        {showPopup && (
+            <div
+                className="wishlist_popup_overlay position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+                style={{ zIndex: 9999, background: 'rgba(0,0,0,0.5)' }}
+                onClick={() => setShowPopup(false)}  // Close on backdrop click
+            >
+                <div
+                    className="wishlist_popup bg-white p-4 rounded text-center"
+                    style={{ maxWidth: '450px', width: '90%' }}
+                    onClick={(e) => e.stopPropagation()}  // Prevent closing when clicking popup
+                >
+                    <i className="bx bx-heart fs-1 js_text_primary mb-3 d-block"></i>
+                    <h4 className="js_text-title mb-2">Please Login First!</h4>
+                    <p className="text-muted mb-4">
+                        You need to be logged in to Move Further.
+                    </p>
+                    <div className="d-flex gap-3 justify-content-center">
+                        <button
+                            className="js-btn style-two"
+                            onClick={() => navigate('/signup')}
+                        >
+                            Login Now
+                        </button>
+                        <button
+                            className="js-btn style-three text-danger"
+                            onClick={() => setShowPopup(false)}
+                        >
+                            Maybe Later
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
+
         <div className='product_img position-relative z-1 overflow-hidden'>
-            <img src={`${IMAGE_BASE_URL}${data.image}`} alt="product image" className='d-block mx-auto' />
-            {!!data.is_sale_available && (
+            <img src={normalizedData.imageUrl} alt="product image" className='d-block mx-auto' />
+            {!!normalizedData.is_sale_available && (
                 <span className='product_promo fs-14 text-white position-absolute'>
                     Sale!
                 </span>
             )}
             <ul className='product_options list-unstyled mb-0 position-absolute z-1 text-center'>
                 <li>
-                    <a href='/' className='d-flex flex-column align-items-center justify-content-center rounded-circle'><i className="bx bx-heart"></i></a>
+                    <a href='#'
+                        onClick={handleWishlistClick}
+                        className='d-flex flex-column align-items-center justify-content-center rounded-circle'><i className="bx bx-heart"></i></a>
                 </li>
                 <li>
-                    <button type='button' className='d-flex flex-column align-items-center justify-content-center rounded-circle'><i className="bx bx-cart"></i></button>
+                    <button onClick={handleCartClick} type='button' className='d-flex flex-column align-items-center justify-content-center rounded-circle'><i className="bx bx-cart"></i></button>
                 </li>
                 <li>
                     <button type='button' className='d-flex flex-column align-items-center justify-content-center rounded-circle'><img src={Icons.view} alt="icon img" /></button>
@@ -72,9 +202,9 @@ function CardStyleOne({ data, mb, fontSize }) {
             </li>
         </ul>
         <h3 className={`fw-normal ${fontSize}`}>
-            <a href="/" className='js_text-title'>{data.name}</a>
+            <a href="/" className='js_text-title'>{normalizedData.name}</a>
         </h3>
-        <span className='product_price js_text_primary'>${data.price}</span>
+        <span className='product_price js_text_primary'>${normalizedData.price}</span>
     </div>;
 }
 
@@ -167,7 +297,6 @@ function CardStyleThree({ data }) {
         </div>
     </div>;
 }
-
 
 
 function CardStyleFour({ data, subVariant, saleEnd }) {

@@ -29,3 +29,33 @@ CREATE PROCEDURE user_find_by_email(
 BEGIN 
     SELECT * FROM users WHERE email=p_email;
 END;
+
+
+DROP PROCEDURE IF EXISTS user_find_by_id;
+
+CREATE PROCEDURE user_find_by_id(
+    IN p_id INT
+)
+BEGIN 
+    SELECT * FROM users WHERE id=p_id;
+END;
+
+
+
+DROP PROCEDURE IF EXISTS update_password_by_id;
+
+CREATE PROCEDURE update_password_by_id(
+    IN p_id INT,
+    IN p_password VARCHAR(255)
+)
+BEGIN 
+    IF EXISTS (SELECT 1 FROM users WHERE id = p_id) THEN
+        UPDATE users 
+        SET password = p_password 
+        WHERE id = p_id;
+
+        SELECT TRUE AS is_updated;
+    ELSE
+        SELECT FALSE AS is_updated;
+    END IF;
+END;

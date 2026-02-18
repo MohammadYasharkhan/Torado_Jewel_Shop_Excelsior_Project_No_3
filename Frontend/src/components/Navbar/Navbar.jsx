@@ -183,10 +183,10 @@ const blogSubListData = [
 
 
 const productCardData = [
-    { itemName: "New Fashion Earring", itemPrice: 100, itemImage: ProductImages.product1, isSaleAvailable: true },
-    { itemName: "Natural Stone Bracelet", itemPrice: 200, itemImage: ProductImages.product2, isSaleAvailable: false },
-    { itemName: "Engagement Lady Ring", itemPrice: 150, itemImage: ProductImages.product3, isSaleAvailable: true },
-    { itemName: "High Quality Necklace", itemPrice: 350, itemImage: ProductImages.product4, isSaleAvailable: false },
+    { name: "New Fashion Earring", price: 100, image: ProductImages.product1, is_sale_available: true },
+    { name: "Natural Stone Bracelet", price: 200, image: ProductImages.product2, is_sale_available: false },
+    { name: "Engagement Lady Ring", price: 150, image: ProductImages.product3, is_sale_available: true },
+    { name: "High Quality Necklace", price: 350, image: ProductImages.product4, is_sale_available: false },
 ]
 
 
@@ -370,7 +370,7 @@ function Navbar() {
                         <h4 className='fw-normal fs-20 mb-20'>Featured Products</h4>
                         <div className='product_cart_content'>
                             {productDataFeatures.map((data, index) => (
-                                <ProductCart productData={data} key={index} produtType={"featureCartProduct"}></ProductCart>
+                                <ProductCartSide productData={data} key={index} produtType={"featureCartProduct"}></ProductCartSide>
                             ))}
                         </div>
                     </div>
@@ -391,7 +391,7 @@ function Navbar() {
                         <h4 className='fw-normal fs-20 mb-20'>Shopping Cart</h4>
                         <div className='product_cart_content'>
                             {productDataFeatures.map((data, index) => (
-                                <ProductCart productData={data} key={index} produtType={"shoppingCartProduct"}></ProductCart>
+                                <ProductCartSide productData={data} key={index} produtType={"shoppingCartProduct"}></ProductCartSide>
                             ))}
                         </div>
                     </div>
@@ -439,7 +439,7 @@ function Navbar() {
 
 
 
-function ProductCart({ productData, produtType }) {
+function ProductCartSide({ productData, produtType }) {
     return <div className='product_cart d-flex align-items-center'>
         <div className='product_image'>
             <a href="/" className='d-block'>
@@ -454,7 +454,6 @@ function ProductCart({ productData, produtType }) {
                 <li className='d-inline-block js_text_primary'><i className="bx bxs-star"></i></li>
                 <li className='d-inline-block js_text_primary'><i className="bx bxs-star"></i></li>
             </ul>)}
-
 
             <h3><a href="/" className='d-inline-block js_text-title'>{productData.itemName}</a></h3>
             <span className='d-block mb-1 js js_text_primary'>${productData.itemPrice}</span>

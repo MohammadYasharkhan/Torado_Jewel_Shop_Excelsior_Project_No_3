@@ -47,6 +47,7 @@ import BlogSinglePostWithLeftSideBar from './pages/BlogPages/BlogSinglePostWithL
 import BlogSinglePostWithRightSideBar from './pages/BlogPages/BlogSinglePostWithRightSideBar';
 import CartPage from './pages/CartPage/CartPage';
 import NewsLetterVerifyPage from './pages/NewsLetterVerifyPage';
+import ResetPasswordVerifyPage from './pages/AuthenticationPage/ResetPasswordVerifyPage';
 
 function App() {
   return (
@@ -97,8 +98,8 @@ function App() {
         <Route path='/refundPolicy' element={<RefundPolicyPage></RefundPolicyPage>}></Route>
         <Route path='/error404' element={<ErrorPage></ErrorPage>}></Route>
         <Route path='/privacyPolicy' element={<PrivacyPolicyPage></PrivacyPolicyPage>}></Route>
-
         <Route path='/newsletter/verify' element={<NewsLetterVerifyPage></NewsLetterVerifyPage>}></Route>
+        <Route path='/resetPassword/verify' element={<ResetPasswordVerifyPage></ResetPasswordVerifyPage>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

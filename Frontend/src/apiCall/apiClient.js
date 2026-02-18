@@ -1,15 +1,15 @@
-import { data } from "react-router-dom";
-
 const BASE_URL = "http://localhost:4000";
 
 const apiClient = async (url, options = {}) => {
+    const { headers: optionHeaders, ...restOptions } = options;
+
     const response = await fetch(`${BASE_URL}${url}`, {
+        credentials: "include", // ✅ Never overwritten
+        ...restOptions, // ✅ method, body etc
         headers: {
             "Content-Type": "application/json",
-            ...options.headers,
+            ...optionHeaders, // ✅ Merge headers cleanly
         },
-        credentials: "include",
-        ...options,
     });
 
     // 1️⃣ Parse response body ONCE
@@ -34,26 +34,23 @@ const apiClient = async (url, options = {}) => {
     }
 
     // 4️⃣ Success → return only `data`
-    return result.data;
+    return result.data ?? { message: result?.status?.description };
 };
 
-
-
 export const submitContactUsForm = (data) =>
-    apiClient("/user/contactUsForm", {
-            method: "POST",
-            body: JSON.stringify(data),
+    apiClient("/api/forms/contact-us", {
+        method: "POST",
+        body: JSON.stringify(data),
     });
 
 export const submitAskQuestionForm = (data) =>
-    apiClient("/user/askQuestionForm", {
-            method: "POST",
-            body: JSON.stringify(data),
+    apiClient("/api/form/ask-question", {
+        method: "POST",
+        body: JSON.stringify(data),
     });
 
-
 export const getAllProducts = () =>
-    apiClient("/user/getAllProducts", {
+    apiClient("/api/products/getAllProducts", {
         method: "GET",
     });
 

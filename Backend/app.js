@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
+import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
-import { userRoutes } from "./src/routes/userRoutes.js";
-import { newsletterRoutes } from "./src/routes/newLetterRoutes.js";
 import { db_object } from "./src/configs/dbConfig.js";
 import migrate from "./src/configs/dbMigration.js";
+import router from "./src/routes/routes.js";
 const port = 4000;
 const app = express();
 
@@ -21,10 +21,11 @@ app.use(
     })
 );
 
+app.use(cookieParser());
+
 app.use(express.json());
 app.use('/uploads',express.static(path.join(__dirname,'src','uploads')));
-app.use("/user", userRoutes);
-app.use("/newsletter", newsletterRoutes);
+app.use("/api",router);
 
 
 const errorHandler = (err, req, res, next) => {

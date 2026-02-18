@@ -18,7 +18,7 @@ class NewsLetterService {
         const subscriberId = await NewsLetterRepository.create(email);
         const token = await TokenService.generateEmailVerificationToken(subscriberId);
 
-        const mailSend = await MailService.sendVerificationEmail(email, token);
+        const mailSend = await MailService.sendVerificationEmail(email,token);
 
         return {
             alreadySubscribed: false,
@@ -45,7 +45,7 @@ class NewsLetterService {
             };
         }
         catch (error) {
-            if (err instanceof RecordNotFoundError) {
+            if (error instanceof RecordNotFoundError) {
                 throw new TokenExpiredError("Invalid or expired token");
             }
             throw err;

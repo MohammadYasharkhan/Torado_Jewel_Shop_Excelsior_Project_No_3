@@ -5,11 +5,11 @@ import { ProductImages,Icons } from '../../../assets/assetsExporter';
 import ProductCard from '../ProductCard/ProductCard';
 
 const productCardData = [
-    { itemName: "New Fashion Earring", itemPrice: 100, itemImage: ProductImages.product1, isSaleAvailable: true },
-    { itemName: "Natural Stone Bracelet", itemPrice: 200, itemImage: ProductImages.product2, isSaleAvailable: false },
-    { itemName: "Engagement Lady Ring", itemPrice: 150, itemImage: ProductImages.product3, isSaleAvailable: true },
-    { itemName: "High Quality Necklace", itemPrice: 350, itemImage: ProductImages.product4, isSaleAvailable: false },
-    { itemName: "New Fashion Earring", itemPrice: 100, itemImage: ProductImages.product5, isSaleAvailable: false },
+    { name: "New Fashion Earring", price: 100, image: ProductImages.product1, is_sale_available: true },
+    { name: "Natural Stone Bracelet",price: 200, image: ProductImages.product2, is_sale_available: false },
+    { name: "Engagement Lady Ring", price: 150, image: ProductImages.product3, is_sale_available: true },
+    { name: "High Quality Necklace",price: 350, image: ProductImages.product4, is_sale_available: false },
+    { name: "New Fashion Earring", price: 100, image: ProductImages.product5, is_sale_available: false },
 ]
 
 

@@ -3,9 +3,16 @@ import { subscribeNewsLetterController, verifyNewsLetterController } from "../co
 import { DataValidator } from "../helper/userValidator.js";
 import { userValidationMid } from "../middleware/validationMiddleware.js";
 
-const newsletterRoutes = express.Router();
+const router = express.Router();
 
-newsletterRoutes.route("/subscribe").post(userValidationMid(DataValidator.validateNewsLetter.bind(DataValidator)),subscribeNewsLetterController);
-newsletterRoutes.route("/verify").post(userValidationMid(DataValidator.validateToken.bind(DataValidator)),verifyNewsLetterController);
+router.post("/subscribe",
+    userValidationMid(DataValidator.validateNewsLetter.bind(DataValidator)),
+    subscribeNewsLetterController
+);
 
-export { newsletterRoutes };
+router.post("/verify",
+    userValidationMid(DataValidator.validateToken.bind(DataValidator)),
+    verifyNewsLetterController
+);
+
+export default router;

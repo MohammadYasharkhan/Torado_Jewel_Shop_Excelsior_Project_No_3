@@ -17,7 +17,7 @@ const ResponseHandler = (responseObj, req, res) => {
 };
 
 class baseResponseS{
-    constructor(code, status, description, Data) {
+    constructor(code, status, description, Data=null) {
         this.code = code;
         this.status = status;
         this.description = description;
@@ -38,12 +38,31 @@ class addUser extends baseResponseS {
     }
 }
 
+class removeEntry extends baseResponseS {
+    constructor(data) {
+        super(HttpCodeConst.SUCCESS, MessageConst.SUCCESS, DescriptionConst.RECORD_REMOVED,data);
+    }
+}
+
+class notFound extends baseResponseS {
+    constructor(data) {
+        super(HttpCodeConst.SUCCESS, MessageConst.SUCCESS, DescriptionConst.NOTFOUND,data);
+    }
+}
+
+
+class alreadyExist extends baseResponseS{
+    constructor(data) {
+        super(HttpCodeConst.SUCCESS, MessageConst.SUCCESS, DescriptionConst.ALREADY_EXIST,data);
+    }
+}
 
 class updateCategory extends baseResponseS {
     constructor(data) {
         super(HttpCodeConst.SUCCESS, MessageConst.SUCCESS, DescriptionConst.UPDATE_RECORD,data);
     }
 }
+
 
 class deleteEmpS extends baseResponseS {
     constructor(data) {
@@ -146,6 +165,52 @@ class emailVerifiedSucces extends baseResponseS
     }
 }
 
+class resetPasswordEmailSentSuccess extends baseResponseS
+{
+    constructor(data)
+    {
+        super(HttpCodeConst.SUCCESS,MessageConst.SUCCESS,DescriptionConst.MESSAGE_SEND_IF_EMAIL_EXISTS,data);
+    }
+}
+
+
+class tokenVerifiedSucces extends baseResponseS
+{
+    constructor(data)
+    {
+        super(HttpCodeConst.SUCCESS,MessageConst.SUCCESS,DescriptionConst.TOKEN_VERIFIED_SUCCESS,data);
+    }
+}
+
+
+class passwordChangeSuccess extends baseResponseS
+{
+    constructor(data)
+    {
+        super(HttpCodeConst.SUCCESS,MessageConst.SUCCESS,DescriptionConst.PASSWORD_CHANGE_SUCCESS,data);
+    }
+}
+
+
+class orderPlacedSuccess extends baseResponseS
+{
+    constructor(data)
+    {
+        super(HttpCodeConst.SUCCESS,MessageConst.SUCCESS,DescriptionConst.ORDER_PLACED_SUCCESS,data);
+    }
+}
+
+
+class cartIsEmpty extends baseResponseS
+{
+    constructor(data)
+    {
+        super(HttpCodeConst.SUCCESS,MessageConst.SUCCESS,DescriptionConst.CART_IS_EMPTY,data);
+    }
+}
+
 export {ResponseHandler,baseResponseS,getAlldataS,addUser,updateCategory, deleteEmpS,
         tokenGenrated,userUnblocked,otpGenerated,logout,settingLoaded,categorieInserted,
-        foodItemInserted,addonInserted,loginSuccess,alreadySubscribed,verificationEmailSend,emailVerifiedSucces,alreadyVerifiedToken};
+        foodItemInserted,addonInserted,loginSuccess,alreadySubscribed,verificationEmailSend,emailVerifiedSucces,alreadyVerifiedToken
+    ,resetPasswordEmailSentSuccess,tokenVerifiedSucces,passwordChangeSuccess,alreadyExist,removeEntry,
+    notFound,orderPlacedSuccess,cartIsEmpty};

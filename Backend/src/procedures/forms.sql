@@ -59,10 +59,10 @@ CREATE TABLE IF NOT EXISTS askquestion(
 DROP PROCEDURE IF EXISTS askquestion_create;
 
 CREATE PROCEDURE askquestion_create(
-    p_name VARCHAR(255),
-    p_email VARCHAR(255),
-    p_phone VARCHAR(15),
-    p_message TEXT
+    IN p_name VARCHAR(255),
+    IN p_email VARCHAR(255),
+    IN p_phone VARCHAR(15),
+    IN p_message TEXT
 )
 BEGIN   
     INSERT INTO askquestion(name,email,phone,message) VALUES(p_name,p_email,p_phone,p_message);

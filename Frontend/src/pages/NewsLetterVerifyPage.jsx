@@ -7,6 +7,8 @@ function NewsLetterVerifyPage() {
         const verifyEmail = async () => {
             const verifyToken = new URLSearchParams(window.location.search).get("token");
             
+            console.log(verifyToken);
+
             if (!verifyToken) {
                 setStatus("invalid");
                 return;

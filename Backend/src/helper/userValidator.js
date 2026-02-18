@@ -29,6 +29,15 @@ class DataValidator {
         return true;
     }
 
+
+    static validateLogin({ email, password }) {
+        email = email?.trim();
+        password = password?.trim();
+
+        if (!email) throw new ValidationError("Email is required");
+        if (!password) throw new ValidationError("Password is required");
+    }
+
     static validateContactUs({ name, email, phone, subject, message }) {
         name = name?.trim();
         email = email?.trim();
@@ -61,8 +70,7 @@ class DataValidator {
 
 
     static validateToken(token) {
-
-
+        console.log(token.token);
         let newToken = token.token;
         if (!newToken || typeof newToken !== "string") {
             throw new ValidationError("Verification token is required");
@@ -86,6 +94,16 @@ class DataValidator {
         return true;
     }
 
+
+
+    static validateResetPassword(data) {
+        this.validateToken(data);
+
+        if (!data.password) throw new ValidationError("Password is required");
+        if (!REGEX.PASSWORD.test(data.password)) {
+            throw new ValidationError("Password is weak");
+        }
+    }
 
     static validateComment({ name, phone, website, email, comment }) {
         name = name?.trim();
@@ -216,29 +234,29 @@ class DataValidator {
                 );
             }
 
-            
+
             /* ---------- SALE PRICE (OPTIONAL) ---------- */
             if (p.sale_price !== undefined && p.sale_price !== null && p.sale_price !== "") {
-                
+
                 if (isNaN(p.sale_price)) {
                     throw new ValidationError(
                         `Sale price must be a number at index ${i}`
                     );
                 }
-                
+
                 if (Number(p.sale_price) <= 0) {
                     throw new ValidationError(
                         `Sale price must be greater than 0 at index ${i}`
                     );
                 }
-                
+
                 if (Number(p.sale_price) >= Number(p.price)) {
                     throw new ValidationError(
                         `Sale price must be less than price at index ${i}`
                     );
                 }
             }
-            
+
 
             /* ---------- SALE AVAILABLE ---------- */
             if (p.is_sale_available !== undefined && p.is_sale_available !== null) {
@@ -249,7 +267,7 @@ class DataValidator {
                     );
                 }
             }
-            
+
             /* ---------- STOCK ---------- */
             if (p.stock === undefined || p.stock === null) {
                 throw new ValidationError(`Stock is required at index ${i}`);
@@ -271,6 +289,66 @@ class DataValidator {
                 );
             }
         });
+    }
+
+
+    static validateProductId({ productId }) {
+        if (!productId) {
+            throw new ValidationError("Product ID is required");
+        }
+
+        if (isNaN(productId)) {
+            throw new ValidationError("Product ID must be a number");
+        }
+
+        if (!Number.isInteger(Number(productId))) {
+            throw new ValidationError("Product ID must be an integer");
+        }
+
+        if (Number(productId) <= 0) {
+            throw new ValidationError("Product ID must be greater than 0");
+        }
+    }
+
+
+    // userValidator.js
+    static validateBatchUpdate({ items }) {
+        if (!items || !Array.isArray(items)) {
+            throw new ValidationError("Items must be an array");
+        }
+
+        if (items.length === 0) {
+            throw new ValidationError("Items array cannot be empty");
+        }
+
+        items.forEach((item, index) => {
+            if (!item.productId) {
+                throw new ValidationError(`Product ID is required at index ${index}`);
+            }
+            if (!item.quantity) {
+                throw new ValidationError(`Quantity is required at index ${index}`);
+            }
+            if (item.quantity < 1 || item.quantity > 99) {
+                throw new ValidationError(`Quantity must be between 1 and 99 at index ${index}`);
+            }
+        });
+    }
+
+    static validateOrderData({orderData}) {
+        const { firstName, lastName, country, city, division, street, phone, orderNote } = orderData;
+
+        const validCountries = ['US', 'UK', 'Canada'];
+        const validCities = ['New York', 'Florida', 'Kentucky'];
+        const validDivisions = ['New York', 'Florida', 'Kentucky'];
+
+        if (!firstName || firstName.trim() === '') throw new ValidationError('First name is required');
+        if (!lastName || lastName.trim() === '') throw new ValidationError('Last name is required');
+        if (!country || !validCountries.includes(country)) throw new ValidationError('Invalid country');
+        if (!city || !validCities.includes(city)) throw new ValidationError('Invalid city');
+        if (!division || !validDivisions.includes(division)) throw new ValidationError('Invalid division');
+        if (!street || street.trim() === '') throw new ValidationError('Street is required');
+        if (!phone || phone.trim() === '') throw new ValidationError('Phone is required');
+        if (!/^\+?[\d\s\-]{7,20}$/.test(phone)) throw new ValidationError('Invalid phone number');
     }
 }
 

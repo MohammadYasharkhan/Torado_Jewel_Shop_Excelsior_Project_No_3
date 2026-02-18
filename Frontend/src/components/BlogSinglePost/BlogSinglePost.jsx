@@ -19,7 +19,7 @@ const blogDetailData = [
     }
 ];
 
-console.log(blogDetailData[0]);
+// console.log(blogDetailData[0]);
 
 const commentsData = [
     {

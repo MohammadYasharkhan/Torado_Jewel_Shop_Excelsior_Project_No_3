@@ -2,6 +2,7 @@ import BreadCrumbSection from '../../components/BreadCrumbSection/BreadCrumbSect
 import { CartTable, SubscribeWithEmail } from '../../components/SmallCompo/SmallCompo';
 import upRighBlackIcon from "../../assets/images/icons/up-right-arrow-black.svg";
 import './WishlistPage.css';
+import { Link } from 'react-router-dom';
 function WishlistPage() {
     return <>
         <BreadCrumbSection title={"Wishlist"}></BreadCrumbSection>
@@ -12,7 +13,7 @@ function WishlistPage() {
                         <CartTable></CartTable>
                         <div className='row align-items-center mt-4'>
                             <div className='col-md-6 offset-md-6 text-md-end'>
-                                <a href="/" className='js_link style-three'>Continue Shopping Cart <img src={upRighBlackIcon} alt="icon" /></a>
+                                <Link to="/cartPage" className='js_link style-three'>Continue Shopping Cart <img src={upRighBlackIcon} alt="icon" /></Link>
                             </div>
                         </div>
                     </div>
